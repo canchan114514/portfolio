@@ -12,7 +12,7 @@ const SITE = {
   // 検索結果やSNSで共有したときに出る説明文（120字程度）
   description: "動画編集者かんちゃんのポートフォリオです。制作した動画作品、プロフィール、ご依頼の流れ、お問い合わせフォームを掲載しています。",
   // GitHubのリポジトリURL（公開後に差し替え）
-  githubRepoUrl: "https://github.com/（ユーザー名）/（リポジトリ名）",
+  githubRepoUrl: "https://github.com/canchan114514/portfolio",
   // Formspreeで発行されたURLに差し替える。XXXXXXXX のままだと送信ボタンは無効になります
   formspreeEndpoint: "https://formspree.io/f/XXXXXXXX",
 };
