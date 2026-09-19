@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ページが見つかりません | かんちゃん</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="section">
+    <div class="wrap">
+      <h1 class="page-title">ページが見つかりません</h1>
+      <p>URLが間違っているか、ページが移動した可能性があります。</p>
+      <p><a id="home-link" href="/">トップページへ戻る</a></p>
+    </div>
+  </main>
+  <script>
+    // GitHub Pages のプロジェクトサイトでは、サイトの入口が /リポジトリ名/ になるため補正する
+    (function () {
+      var parts = location.pathname.split("/").filter(Boolean);
+      var isProjectSite = location.hostname.endsWith("github.io") && parts.length > 0;
+      if (isProjectSite) {
+        var base = "/" + parts[0] + "/";
+        document.getElementById("home-link").href = base;
+        document.querySelector('link[rel="stylesheet"][href="/style.css"]').href = base + "style.css";
+        document.querySelector('link[rel="icon"]').href = base + "assets/favicon.svg";
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>かんちゃん | 動画編集ポートフォリオ</title>
+  <meta name="description" content="動画編集者かんちゃんのポートフォリオです。制作した動画作品、プロフィール、ご依頼の流れ、お問い合わせフォームを掲載しています。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="かんちゃん | 動画編集ポートフォリオ">
+  <meta property="og:description" content="動画編集者かんちゃんのポートフォリオです。制作した動画作品、プロフィール、ご依頼の流れ、お問い合わせフォームを掲載しています。">
+  <meta property="og:image" content="assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#works">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" data-site="name">かんちゃん</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav">メニュー</button>
+      <nav id="global-nav" class="global-nav" aria-label="ページ内リンク">
+        <a href="#works">作品</a>
+        <a href="#profile">プロフィール</a>
+        <a href="#services">ご依頼について</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1 class="hero-name" data-site="name">かんちゃん</h1>
+        <p class="hero-copy" data-site="catchcopy"></p>
+      </div>
+      <div id="hero-work" class="hero-work"></div>
+    </section>
+
+    <section id="works" class="section">
+      <div class="wrap">
+        <h2>作品</h2>
+      </div>
+      <div id="works-list"></div>
+      <div id="samples-block" class="wrap samples" hidden>
+        <h3>短いサンプル</h3>
+        <div id="samples-list" class="samples-list"></div>
+      </div>
+    </section>
+
+    <section id="profile" class="section section-tint">
+      <div class="wrap">
+        <h2>プロフィール</h2>
+        <div class="prose">
+          <p id="profile-intro"></p>
+          <h3>動画編集を始めたきっかけ</h3>
+          <p id="profile-origin"></p>
+          <h3>使用ソフト</h3>
+          <ul id="profile-tools" class="tags"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="wrap">
+        <h2>ご依頼について</h2>
+        <div class="prose">
+          <h3>対応できる依頼</h3>
+          <ul id="services-types" class="plain-list"></ul>
+          <h3>制作の流れ</h3>
+          <ol id="services-flow" class="flow"></ol>
+          <h3>納期の目安</h3>
+          <p id="services-schedule"></p>
+          <div id="services-faq-block" hidden>
+            <h3>よくある質問</h3>
+            <dl id="services-faq" class="faq"></dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-tint">
+      <div class="wrap">
+        <h2>お問い合わせ</h2>
+        <p class="lead">お仕事のご依頼、採用に関するご連絡など、お気軽にどうぞ。</p>
+        <form id="contact-form" class="form" novalidate>
+          <div class="field">
+            <label for="f-name">お名前（必須）</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">メールアドレス（必須）</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-category">ご用件の種類</label>
+            <select id="f-category" name="category">
+              <option>お仕事のご依頼</option>
+              <option>採用に関するご連絡</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-message">内容（必須）</label>
+            <textarea id="f-message" name="message" rows="6" required></textarea>
+          </div>
+          <!-- スパム対策：人間には見えない欄。Formspreeはここに入力があると破棄します -->
+          <div class="hp" aria-hidden="true">
+            <label for="f-gotcha">この欄は空のままにしてください</label>
+            <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button id="f-submit" class="button" type="submit">送信する</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-links">
+        <a href="about-this-site.html">このサイトについて</a>
+        <a id="repo-link" href="#" rel="noopener">GitHubリポジトリ</a>
+      </p>
+      <p class="copyright">&copy; <span id="year"></span> <span data-site="name">かんちゃん</span></p>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+:root {
+  --paper: #FFFFFF;
+  --mist: #F3F5F6;
+  --ink: #262626;
+  --sub: #6E6E6E;
+  --line: #E2E5E7;
+  --accent: #3D6FE0;
+  --gutter: 20px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  line-height: 1.9;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--accent); text-underline-offset: 3px; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--gutter); }
+
+.skip {
+  position: absolute; left: 8px; top: -60px;
+  background: var(--paper); padding: 8px 12px; z-index: 30;
+}
+.skip:focus { top: 8px; }
+
+/* ---------- ヘッダー ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter);
+  min-height: 56px; display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap;
+}
+.brand { color: var(--ink); font-weight: 700; text-decoration: none; }
+.global-nav { display: flex; gap: 28px; }
+.global-nav a { color: var(--ink); text-decoration: none; font-size: 0.95rem; }
+.global-nav a:hover { color: var(--accent); }
+.menu-button {
+  display: none; font: inherit; background: none; border: 1px solid var(--line);
+  border-radius: 4px; padding: 6px 12px; color: var(--ink); cursor: pointer;
+}
+
+/* ---------- ファーストビュー ---------- */
+.hero { padding: 72px 0 0; }
+.hero-name {
+  margin: 0;
+  font-size: clamp(3.5rem, 13vw, 8.5rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1.05;
+}
+.hero-copy { margin: 24px 0 0; color: var(--sub); font-size: 1.05rem; max-width: 34em; }
+.hero .wrap { max-width: 1080px; }
+.hero-work { margin-top: 48px; }
+
+/* ---------- 動画 ---------- */
+.video {
+  position: relative; aspect-ratio: 16 / 9;
+  max-width: 1080px; margin: 0 auto; background: #111;
+}
+.video iframe, .video-play, .video-play img {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+.video-play { padding: 0; background: none; border: 0; cursor: pointer; }
+.video-play img { object-fit: cover; }
+.play-icon {
+  position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px;
+  background: rgba(255, 255, 255, 0.92); border-radius: 50%;
+}
+.play-icon::after {
+  content: ""; position: absolute; left: 29px; top: 22px;
+  border-left: 22px solid var(--ink);
+  border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+}
+.video-empty {
+  background: var(--mist); display: flex; align-items: center; justify-content: center;
+  color: var(--sub);
+}
+.video-empty p { margin: 0; }
+
+/* ---------- セクション ---------- */
+.section { padding: 88px 0; }
+.section-tint { background: var(--mist); }
+h2 { font-size: 1.75rem; line-height: 1.4; margin: 0 0 32px; }
+h3 { font-size: 1.1rem; line-height: 1.5; margin: 40px 0 8px; }
+.prose > h3:first-child { margin-top: 0; }
+.prose p { margin: 0 0 1em; max-width: 40em; }
+.lead { margin: -8px 0 32px; color: var(--sub); }
+
+.tags, .plain-list { list-style: none; margin: 0; padding: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li {
+  border: 1px solid var(--line); background: var(--paper);
+  padding: 2px 12px; border-radius: 4px; font-size: 0.9rem; color: var(--sub);
+}
+.section-tint .tags li, .work .tags li { background: var(--paper); }
+.plain-list li { padding: 10px 0; border-bottom: 1px solid var(--line); max-width: 40em; }
+.plain-list li:first-child { border-top: 1px solid var(--line); }
+
+.flow { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.flow li {
+  counter-increment: step; display: flex; gap: 16px; align-items: baseline;
+  padding: 10px 0; border-bottom: 1px solid var(--line); max-width: 40em;
+}
+.flow li::before {
+  content: counter(step); font-weight: 700; color: var(--accent); min-width: 1.5em;
+}
+.flow li:first-child { border-top: 1px solid var(--line); }
+
+/* ---------- 作品 ---------- */
+#works { padding-bottom: 24px; }
+.work { margin-top: 56px; }
+.work:first-child { margin-top: 0; }
+.work + .work { padding-top: 56px; border-top: 1px solid var(--line); }
+.work .video { margin-bottom: 32px; }
+.work-title { font-size: 1.5rem; margin: 0; }
+.work-meta { margin: 4px 0 24px; color: var(--sub); font-size: 0.95rem; }
+.work-details { margin: 0; background: var(--mist); padding: 8px 24px; }
+.work-details .row { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.work-details .row:last-child { border-bottom: 0; }
+.work-details dt { font-weight: 700; font-size: 0.9rem; color: var(--sub); }
+.work-details dd { margin: 4px 0 0; }
+.empty { margin: 0; padding: 48px 0; color: var(--sub); }
+
+/* ---------- 短いサンプル ---------- */
+.samples { margin-top: 72px; padding-top: 48px; border-top: 1px solid var(--line); max-width: 1080px; }
+.samples h3 { margin-top: 0; }
+.samples-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+.sample { margin: 0; }
+.sample .video { margin: 0; }
+.sample figcaption { margin-top: 10px; display: flex; flex-direction: column; font-size: 0.95rem; line-height: 1.7; }
+.sample figcaption span { color: var(--sub); }
+
+/* ---------- よくある質問 ---------- */
+.faq { margin: 0; max-width: 40em; }
+.faq-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq dt { font-weight: 700; }
+.faq dd { margin: 4px 0 0; color: var(--sub); }
+
+/* ---------- フォーム ---------- */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form { max-width: 560px; }
+.field { margin-bottom: 24px; }
+label { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+input, select, textarea {
+  width: 100%; font: inherit; color: var(--ink); background: var(--paper);
+  border: 1px solid #C9CED2; border-radius: 4px; padding: 10px 12px;
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+}
+.button {
+  font: inherit; font-weight: 700; color: #fff; background: var(--accent);
+  border: 0; border-radius: 4px; padding: 12px 32px; cursor: pointer;
+}
+.button:hover { filter: brightness(0.92); }
+.button:disabled { background: #B5BCC4; cursor: not-allowed; filter: none; }
+.form-status { margin: 16px 0 0; min-height: 1.9em; }
+.form-status.is-success { color: #1F7A46; font-weight: 700; }
+.form-status.is-error { color: #B3261E; }
+
+/* ---------- このサイトについて ---------- */
+.page-title { font-size: clamp(1.75rem, 5vw, 2.5rem); margin: 0 0 40px; line-height: 1.3; }
+.h2-small { font-size: 1.15rem; margin: 40px 0 8px; }
+.about .prose > .h2-small:first-of-type { margin-top: 0; }
+.spec { border-collapse: collapse; width: 100%; max-width: 40em; margin-bottom: 1em; }
+.spec th, .spec td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec th { font-weight: 700; white-space: nowrap; }
+
+/* ---------- フッター ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: 40px 0; font-size: 0.95rem; }
+.footer-inner { max-width: 1080px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 24px; margin: 0 0 12px; }
+.copyright { margin: 0; color: var(--sub); }
+
+/* ---------- スマホ ---------- */
+@media (max-width: 720px) {
+  .hero { padding-top: 48px; }
+  .section { padding: 64px 0; }
+  .menu-button { display: block; }
+  .global-nav:not(.is-static) {
+    display: none; flex-direction: column; gap: 0; width: 100%; padding-bottom: 8px;
+  }
+  .global-nav:not(.is-static).is-open { display: flex; }
+  .global-nav:not(.is-static) a { padding: 12px 0; border-top: 1px solid var(--line); }
+  .work-details { padding: 4px 16px; }
+  .samples-list { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

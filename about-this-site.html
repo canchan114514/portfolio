@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>このサイトについて | かんちゃん</title>
+  <meta name="description" content="かんちゃんのポートフォリオサイトの設計意図、使った技術、ファイル構成、公開方法についてまとめたページです。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="このサイトについて | かんちゃん">
+  <meta property="og:description" content="かんちゃんのポートフォリオサイトの設計意図、使った技術、ファイル構成、公開方法についてまとめたページです。">
+  <meta property="og:image" content="assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#about-main">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" data-site="name">かんちゃん</a>
+      <nav class="global-nav is-static" aria-label="サイト内リンク">
+        <a href="index.html">トップへ戻る</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="about-main" class="section about">
+    <div class="wrap">
+      <h1 class="page-title">このサイトについて</h1>
+      <div class="prose">
+        <h2 class="h2-small">作った目的</h2>
+        <p id="about-purpose"></p>
+        <h2 class="h2-small">使った技術</h2>
+        <p id="about-tech"></p>
+        <h2 class="h2-small">どう作ったか</h2>
+        <p id="about-process"></p>
+        <h2 class="h2-small">ファイル構成</h2>
+        <table class="spec">
+          <tbody>
+            <tr><th scope="row">index.html</th><td>トップページ。1ページ構成</td></tr>
+            <tr><th scope="row">about-this-site.html</th><td>このページ</td></tr>
+            <tr><th scope="row">content.js</th><td>文章と作品情報のすべて。更新時に編集する唯一のファイル</td></tr>
+            <tr><th scope="row">main.js</th><td>content.js を読み、各セクションを描画する処理</td></tr>
+            <tr><th scope="row">style.css</th><td>全スタイル</td></tr>
+          </tbody>
+        </table>
+        <h2 class="h2-small">公開方法</h2>
+        <p>GitHub Pagesで公開しています。mainブランチに変更を反映すると、そのままサイトに反映されます。費用はかかりません。</p>
+        <h2 class="h2-small">今後の改善予定</h2>
+        <p id="about-next"></p>
+        <p><a id="repo-link" href="#" rel="noopener">GitHubリポジトリを見る</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-links"><a href="index.html">トップへ戻る</a></p>
+      <p class="copyright">&copy; <span id="year"></span> <span data-site="name">かんちゃん</span></p>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
