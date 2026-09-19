@@ -16,8 +16,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+  <div class="progress" aria-hidden="true"></div>
   <a class="skip" href="#works">本文へ移動</a>
 
   <header class="site-header">
@@ -35,9 +37,23 @@
 
   <main id="top">
     <section class="hero">
-      <div class="wrap">
+      <div class="hero-bg" aria-hidden="true">
+        <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
+      </div>
+      <div class="wrap hero-inner">
         <h1 class="hero-name" data-site="name">かんちゃん</h1>
         <p class="hero-copy" data-site="catchcopy"></p>
+        <p class="hero-cta">
+          <a class="button" href="#works">作品を見る</a>
+          <a class="button button-ghost" href="#contact">お問い合わせ</a>
+        </p>
+        <!-- 動画編集ソフトのタイムラインをイメージした飾り。再生ヘッドが左から右へ動き続けます -->
+        <div class="timeline" aria-hidden="true">
+          <div class="track"><span class="clip c-b" style="--w:18%;--d:0"></span><span class="clip c-p" style="--w:30%;--d:1"></span><span class="clip c-y" style="--w:12%;--d:2"></span><span class="clip c-v" style="--w:22%;--d:3"></span></div>
+          <div class="track track-2"><span class="clip c-g" style="--w:26%;--d:2"></span><span class="clip c-b" style="--w:20%;--d:3"></span><span class="clip c-p" style="--w:28%;--d:4"></span></div>
+          <div class="track"><span class="clip c-y" style="--w:14%;--d:3"></span><span class="clip c-v" style="--w:34%;--d:4"></span><span class="clip c-b" style="--w:16%;--d:5"></span><span class="clip c-g" style="--w:20%;--d:6"></span></div>
+          <span class="playhead"></span>
+        </div>
       </div>
       <div id="hero-work" class="hero-work"></div>
     </section>

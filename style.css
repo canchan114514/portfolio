@@ -206,3 +206,145 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   動きと色（ファーストビューの演出、スクロールで現れる動き、ボタンなど）
+   ============================================================ */
+:root {
+  --pop: #FF5C7A;
+  --violet: #8B5CF6;
+  --sun: #FFC83D;
+  --mint: #2EC4B6;
+  --grad: linear-gradient(90deg, #3D6FE0, #8B5CF6, #FF5C7A, #FF9F3D);
+}
+
+/* ---- ページ上部の進行バー ---- */
+.progress {
+  position: fixed; top: 0; left: 0; z-index: 40; height: 4px; width: 100%;
+  background: var(--grad); transform: scaleX(0); transform-origin: left;
+}
+
+/* ---- ヘッダー ---- */
+.site-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); }
+.global-nav:not(.is-static) a { position: relative; }
+.global-nav:not(.is-static) a::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; height: 3px; width: 100%;
+  background: var(--grad); border-radius: 2px; transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.global-nav:not(.is-static) a:hover::after { transform: scaleX(1); }
+
+/* ---- ファーストビュー ---- */
+.hero { position: relative; overflow: hidden; padding-bottom: 64px; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.blob {
+  position: absolute; border-radius: 50%; filter: blur(64px); opacity: 0.6;
+  animation: float 14s ease-in-out infinite alternate;
+}
+.b1 { width: 460px; height: 460px; background: #9DB8FF; left: -100px; top: -80px; }
+.b2 { width: 380px; height: 380px; background: #FFB6C6; right: -60px; top: 20px; animation-duration: 17s; }
+.b3 { width: 320px; height: 320px; background: #FFE18C; left: 42%; top: 220px; animation-duration: 21s; }
+@keyframes float { to { transform: translate(70px, 50px) scale(1.18); } }
+.hero-inner, .hero-work { position: relative; z-index: 1; }
+
+.hero-name .ch {
+  display: inline-block;
+  background: var(--grad); background-size: 500% 100%;
+  background-position: calc(var(--i) * 25%) 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding: 0 0.04em;
+  animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both, wave 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.09s), calc(1.4s + var(--i) * 0.18s);
+  transition: transform 0.2s;
+}
+.hero-name .ch:hover { transform: translateY(-10px) rotate(-4deg); }
+@keyframes rise { from { opacity: 0; transform: translateY(70%) rotate(6deg); } }
+@keyframes wave { 50% { transform: translateY(-6px); } }
+
+.hero-copy, .hero-cta { animation: fadeup 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hero-copy { animation-delay: 0.7s; color: #444; }
+.hero-cta { animation-delay: 0.9s; display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 0; }
+@keyframes fadeup { from { opacity: 0; transform: translateY(20px); } }
+
+/* ---- タイムライン風の飾り ---- */
+.timeline {
+  position: relative; margin-top: 48px; padding: 12px; overflow: hidden;
+  background: rgba(255, 255, 255, 0.7); border: 1px solid var(--line); border-radius: 12px;
+  animation: fadeup 0.8s 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.track { display: flex; gap: 6px; margin: 6px 0; }
+.track-2 { padding-left: 8%; }
+.clip {
+  flex: none; width: var(--w); height: 14px; border-radius: 4px; transform-origin: left;
+  animation: grow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(1.2s + var(--d) * 0.1s);
+}
+@keyframes grow { from { transform: scaleX(0); opacity: 0; } }
+.c-b { background: #3D6FE0; } .c-p { background: var(--pop); } .c-y { background: var(--sun); }
+.c-v { background: var(--violet); } .c-g { background: var(--mint); }
+.playhead {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: #FF3B5C;
+  animation: scan 7s linear 2s infinite;
+}
+.playhead::before {
+  content: ""; position: absolute; left: -5px; top: 0;
+  border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #FF3B5C;
+}
+@keyframes scan { from { left: 0; } to { left: 100%; } }
+
+/* ---- 見出しと背景 ---- */
+.section > .wrap > h2:not(.h2-small)::before {
+  content: ""; display: block; width: 56px; height: 6px; border-radius: 3px;
+  background: var(--grad); margin-bottom: 18px;
+}
+.section-tint { background: linear-gradient(135deg, #F3F6FF, #FFF3F6); }
+
+/* ---- 作品 ---- */
+.video { overflow: hidden; }
+.video-play img { transition: transform 0.6s ease; }
+.video-play:hover img { transform: scale(1.04); }
+.play-icon { transition: transform 0.25s; }
+.video-play:hover .play-icon { transform: scale(1.12); }
+.play-icon::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.9); animation: ring 2s ease-out infinite;
+}
+@keyframes ring { to { transform: scale(1.7); opacity: 0; } }
+.work-details { border-left: 5px solid; border-image: linear-gradient(180deg, #3D6FE0, #FF5C7A) 1; }
+.tags li::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 8px; background: var(--accent);
+}
+.tags li:nth-child(4n+2)::before { background: var(--pop); }
+.tags li:nth-child(4n+3)::before { background: var(--sun); }
+.tags li:nth-child(4n)::before { background: var(--mint); }
+.flow li::before { color: var(--pop); font-size: 1.15rem; }
+
+/* ---- ボタン ---- */
+.button {
+  display: inline-block; text-decoration: none; text-align: center;
+  background: linear-gradient(90deg, #3D6FE0, #8B5CF6);
+  box-shadow: 0 6px 18px rgba(61, 111, 224, 0.28);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.button:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(61, 111, 224, 0.36); filter: none; }
+.button-ghost { background: #fff; color: var(--accent); border: 2px solid var(--accent); box-shadow: none; }
+.button-ghost:hover { box-shadow: 0 8px 20px rgba(61, 111, 224, 0.2); }
+.button:disabled { background: #B5BCC4; box-shadow: none; transform: none; }
+
+/* ---- スクロールで現れる動き（JSが動いているときだけ） ---- */
+html.js .reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html.js .reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 720px) {
+  .b1 { width: 300px; height: 300px; } .b2 { width: 260px; height: 260px; } .b3 { display: none; }
+  .timeline { margin-top: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; transform: none; }
+  .playhead, .progress { display: none; }
+}

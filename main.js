@@ -183,6 +183,59 @@
     setText("#about-next", ABOUT_THIS_SITE.nextSteps);
   }
 
+  // ---------- 表示名を1文字ずつに分ける（ファーストビューの動き用） ----------
+  var heroName = $(".hero-name");
+  if (heroName) {
+    var nameText = heroName.textContent;
+    heroName.setAttribute("aria-label", nameText);
+    heroName.textContent = "";
+    Array.from(nameText).forEach(function (ch, i) {
+      var s = el("span", { className: "ch", text: ch, attrs: { "aria-hidden": "true" } });
+      s.style.setProperty("--i", String(i));
+      heroName.appendChild(s);
+    });
+  }
+
+  // ---------- 動き：進行バーとスクロールで現れる表示 ----------
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var bar = $(".progress");
+  if (bar && !reduceMotion) {
+    var ticking = false;
+    var updateBar = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ")";
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
+    }, { passive: true });
+    updateBar();
+  }
+
+  var revealTargets = document.querySelectorAll(
+    ".section > .wrap > h2, .prose > *, .work, .samples, .sample, .faq-item, .flow li, .plain-list li, .form, .lead"
+  );
+  if (revealTargets.length) {
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealTargets.forEach(function (t) { t.classList.add("in"); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+      revealTargets.forEach(function (t) {
+        t.classList.add("reveal");
+        if (t.matches(".flow li, .plain-list li, .faq-item")) {
+          var idx = Array.prototype.indexOf.call(t.parentNode.children, t);
+          t.style.transitionDelay = Math.min(idx, 5) * 80 + "ms";
+        }
+        io.observe(t);
+      });
+    }
+  }
+
   // ---------- スマホのメニュー ----------
   var menuBtn = $(".menu-button");
   var nav = $("#global-nav");
